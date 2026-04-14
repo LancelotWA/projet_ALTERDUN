@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mv ItemType.h Entity.h Player.h Monster.h NormalMonster.h MiniBossMonster.h BossMonster.h Item.h ActAction.h BestiaryEntry.h Game.h include/)",
+      "Bash(mv Entity.cpp Player.cpp Monster.cpp NormalMonster.cpp MiniBossMonster.cpp BossMonster.cpp Item.cpp ActAction.cpp BestiaryEntry.cpp Game.cpp src/)"
+    ]
+  }
+}

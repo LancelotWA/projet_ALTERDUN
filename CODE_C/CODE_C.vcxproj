@@ -124,6 +124,29 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CODE_C.cpp" />
+    <ClCompile Include="src\Entity.cpp" />
+    <ClCompile Include="src\Player.cpp" />
+    <ClCompile Include="src\Monster.cpp" />
+    <ClCompile Include="src\NormalMonster.cpp" />
+    <ClCompile Include="src\MiniBossMonster.cpp" />
+    <ClCompile Include="src\BossMonster.cpp" />
+    <ClCompile Include="src\Item.cpp" />
+    <ClCompile Include="src\ActAction.cpp" />
+    <ClCompile Include="src\BestiaryEntry.cpp" />
+    <ClCompile Include="src\Game.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\Entity.h" />
+    <ClInclude Include="include\Player.h" />
+    <ClInclude Include="include\Monster.h" />
+    <ClInclude Include="include\NormalMonster.h" />
+    <ClInclude Include="include\MiniBossMonster.h" />
+    <ClInclude Include="include\BossMonster.h" />
+    <ClInclude Include="include\Item.h" />
+    <ClInclude Include="include\ItemType.h" />
+    <ClInclude Include="include\ActAction.h" />
+    <ClInclude Include="include\BestiaryEntry.h" />
+    <ClInclude Include="include\Game.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

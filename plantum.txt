@@ -1,0 +1,143 @@
+@startuml ALTERDUNE
+skinparam classAttributeIconSize 0
+skinparam classFontStyle bold
+hide empty members
+
+' ================== ENUMS ==================
+enum ItemType {
+  type : string
+  on_player : bool
+}
+
+' ================== ENTITY ==================
+class entity {
+  # hp : int
+  # hpMax : int
+  --
+  + takeDamage(dmg : int) : void
+  + heal(amount : int) : void
+  + isAlive() : bool
+  + getHp() : int
+  + getHpMax() : int
+}
+
+' ================== GAME ==================
+class Game {
+  # player : Player
+  # monsters : vector<Monster*>
+  # bestiary : vector<BestiaryEntry>
+  --
+  + run() : void
+  + showMenu() : void
+  + loadItems(path : string) : void
+  + loadMonsters(path : string) : void
+  + startCombat() : void
+  + showBestiary() : void
+  + showStats() : void
+  + showItems() : void
+}
+
+' ================== PLAYER ==================
+class Player {
+  # name : string
+  # inventory : vector<Item>
+  --
+  + fight(m : Monster&) : void
+  + useItem(index : int) : void
+  + mercy(m : Monster&) : bool
+  + getName() : string
+  + getInventory() : vector<Item>&
+}
+
+' ================== ITEM ==================
+class Item {
+  # name : string
+  # type : ItemType
+  # value : int
+  # quantity : int
+  --
+  + apply(p : Player&, m : Monster&) : void
+  + getName() : string
+  + getQuantity() : int
+  + decrement() : void
+}
+
+' ================== MONSTER (abstract) ==================
+abstract class Monster {
+  # name : string
+  # atk : int
+  # def : int
+  # mercy : int
+  # mercy_obj : int
+  # actIds : vector<string>
+  --
+  + {abstract} nbActs() : int
+  + attack(p : Player&) : void
+  + canBeSpared() : bool
+  + getName() : string
+  + getMercy() : int
+  + getActIds() : vector<string>&
+}
+
+' ================== SOUS-CLASSES MONSTER ==================
+class NormalMonster {
+  + nbActs() : int
+}
+
+class MiniBossMonster {
+  + nbActs() : int
+}
+
+class BossMonster {
+  + nbActs() : int
+}
+
+' ================== ACT ACTION ==================
+class ActAction {
+  # id : string
+  # text : string
+  # mercyImpact : int
+  --
+  + execute(m : Monster&) : void
+  + getId() : string
+  + getText() : string
+  + getMercyImpact() : int
+}
+
+' ================== BESTIARY ENTRY ==================
+class BestiaryEntry {
+  # id_bestiary : int
+  # FightResult : enum (KILLED, SPARED)
+  - best_monster : Monster
+  --
+  + display() : void
+  + getResult() : string
+}
+
+' ================== RELATIONSHIPS ==================
+' Héritage entity
+entity <|-- Player
+entity <|-- Monster
+
+' Héritage Monster -> catégories (polymorphisme)
+Monster <|-- NormalMonster
+Monster <|-- MiniBossMonster
+Monster <|-- BossMonster
+
+' Composition (Game possède ces objets)
+Game "1" *-- "1" Player : owns >
+Game "1" *-- "10" BestiaryEntry
+
+' Agrégation
+Game "1" o-- "*" Monster
+
+' Composition Player -> Item
+Player "1" *-- "*" Item : inventory >
+
+' Dépendances
+Player ..> Monster : fights
+Item --> ItemType
+Monster --> ActAction
+BestiaryEntry--> Monster
+
+@enduml
