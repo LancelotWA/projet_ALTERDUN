@@ -1,11 +1,8 @@
 #pragma once
-#include <string>
-#include <vector>
+#include "common.h"
 #include "Player.h"
 #include "Monster.h"
 #include "BestiaryEntry.h"
-using std::string;
-using std::vector;
 
 class Game {
 private:

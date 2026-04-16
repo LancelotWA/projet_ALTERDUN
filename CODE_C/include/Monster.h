@@ -1,10 +1,7 @@
 #pragma once
-#include <string>
-#include <vector>
+#include "common.h"
 #include "Entity.h"
 #include "ActAction.h"
-using std::string;
-using std::vector;
 
 class Player;
 
@@ -22,9 +19,13 @@ public:
 	virtual ~Monster() = default;
 
 	virtual int nbActs() const = 0;
+	virtual string getCategory() const = 0;
 	void attack(Player& p);
 	bool canBeSpared() const;
 	string getName() const;
+	int getAtk() const;
+	int getDef() const;
 	int getMercy() const;
+	void addMercy(int amount);
 	vector<string>& getActIds();
 };

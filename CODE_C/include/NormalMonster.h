@@ -6,4 +6,5 @@ public:
 	using Monster::Monster;
 
 	int nbActs() const override;
+	string getCategory() const override;
 };
