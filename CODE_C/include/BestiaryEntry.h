@@ -1,6 +1,5 @@
 #pragma once
-#include <string>
-using std::string;
+#include "common.h"
 
 class Monster;
 

@@ -1,5 +1,9 @@
 #include "../include/NormalMonster.h"
 
 int NormalMonster::nbActs() const {
-	return 0;
+	return 2;
+}
+
+string NormalMonster::getCategory() const {
+	return "NORMAL";
 }

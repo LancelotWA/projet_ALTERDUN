@@ -1,10 +1,7 @@
 #pragma once
-#include <string>
-#include <vector>
+#include "common.h"
 #include "Entity.h"
 #include "Item.h"
-using std::string;
-using std::vector;
 
 class Monster;
 
@@ -17,7 +14,7 @@ public:
 	Player(int hp, int hpMax, const string& name);
 
 	void fight(Monster& m);
-	void useItem(int index);
+	void useItem(int index, Monster& m);
 	bool mercy(Monster& m);
 	string getName() const;
 	vector<Item>& getInventory();

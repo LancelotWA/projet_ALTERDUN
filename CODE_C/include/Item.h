@@ -1,7 +1,6 @@
 #pragma once
-#include <string>
+#include "common.h"
 #include "ItemType.h"
-using std::string;
 
 class Player;
 class Monster;
@@ -12,9 +11,10 @@ private:
 	ItemType type;
 	int value;
 	int quantity;
+	bool on_player;
 
 public:
-	Item(const string& name, ItemType type, int value, int quantity);
+	Item(const string& name, ItemType type, int value, int quantity, bool on_player);
 
 	void apply(Player& p, Monster& m);
 	string getName() const;

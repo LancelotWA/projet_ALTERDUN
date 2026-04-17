@@ -2,19 +2,31 @@
 #include "../include/Player.h"
 #include "../include/Monster.h"
 
-Item::Item(const string& name, ItemType type, int value, int quantity)
-	: name(name), type(type), value(value), quantity(quantity) {}
+Item::Item(const string& name, ItemType type, int value, int quantity, bool on_player)
+	: name(name), type(type), value(value), quantity(quantity), on_player(on_player) {}
 
 void Item::apply(Player& p, Monster& m) {
+	if (on_player) {
+		if (value >= 0)
+			p.heal(value);
+		else
+			p.takeDamage(-value);
+	} else {
+		if (value >= 0)
+			m.heal(value);
+		else
+			m.takeDamage(-value);
+	}
 }
 
 string Item::getName() const {
-	return "";
+	return name;
 }
 
 int Item::getQuantity() const {
-	return 0;
+	return quantity;
 }
 
 void Item::decrement() {
+	if (quantity > 0) quantity--;
 }
