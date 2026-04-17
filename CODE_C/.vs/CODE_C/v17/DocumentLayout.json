@@ -1,9 +1,49 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\LENOVO\\Desktop\\GIT\\projet_ALTERDUN\\CODE_C\\",
+  "WorkspaceRootPath": "C:\\Users\\kisho\\Desktop\\TAFF\\C\u002B\u002B\\Projet Alterdune\\CODE_C\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8C218262-3D22-40A9-9372-6FF383ED1745}|CODE_C.vcxproj|C:\\Users\\LENOVO\\Desktop\\GIT\\projet_ALTERDUN\\CODE_C\\CODE_C.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{8C218262-3D22-40A9-9372-6FF383ED1745}|CODE_C.vcxproj|C:\\Users\\kisho\\Desktop\\TAFF\\C\u002B\u002B\\Projet Alterdune\\CODE_C\\src\\Entity.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8C218262-3D22-40A9-9372-6FF383ED1745}|CODE_C.vcxproj|solutionrelative:src\\Entity.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8C218262-3D22-40A9-9372-6FF383ED1745}|CODE_C.vcxproj|C:\\Users\\kisho\\Desktop\\TAFF\\C\u002B\u002B\\Projet Alterdune\\CODE_C\\src\\Item.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8C218262-3D22-40A9-9372-6FF383ED1745}|CODE_C.vcxproj|solutionrelative:src\\Item.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8C218262-3D22-40A9-9372-6FF383ED1745}|CODE_C.vcxproj|C:\\Users\\kisho\\Desktop\\TAFF\\C\u002B\u002B\\Projet Alterdune\\CODE_C\\src\\MiniBossMonster.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8C218262-3D22-40A9-9372-6FF383ED1745}|CODE_C.vcxproj|solutionrelative:src\\MiniBossMonster.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8C218262-3D22-40A9-9372-6FF383ED1745}|CODE_C.vcxproj|C:\\Users\\kisho\\Desktop\\TAFF\\C\u002B\u002B\\Projet Alterdune\\CODE_C\\src\\Monster.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8C218262-3D22-40A9-9372-6FF383ED1745}|CODE_C.vcxproj|solutionrelative:src\\Monster.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8C218262-3D22-40A9-9372-6FF383ED1745}|CODE_C.vcxproj|C:\\Users\\kisho\\Desktop\\TAFF\\C\u002B\u002B\\Projet Alterdune\\CODE_C\\src\\NormalMonster.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8C218262-3D22-40A9-9372-6FF383ED1745}|CODE_C.vcxproj|solutionrelative:src\\NormalMonster.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8C218262-3D22-40A9-9372-6FF383ED1745}|CODE_C.vcxproj|C:\\Users\\kisho\\Desktop\\TAFF\\C\u002B\u002B\\Projet Alterdune\\CODE_C\\src\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8C218262-3D22-40A9-9372-6FF383ED1745}|CODE_C.vcxproj|solutionrelative:src\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8C218262-3D22-40A9-9372-6FF383ED1745}|CODE_C.vcxproj|C:\\Users\\kisho\\Desktop\\TAFF\\C\u002B\u002B\\Projet Alterdune\\CODE_C\\src\\Player.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8C218262-3D22-40A9-9372-6FF383ED1745}|CODE_C.vcxproj|solutionrelative:src\\Player.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8C218262-3D22-40A9-9372-6FF383ED1745}|CODE_C.vcxproj|C:\\Users\\kisho\\Desktop\\TAFF\\C\u002B\u002B\\Projet Alterdune\\CODE_C\\src\\BossMonster.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8C218262-3D22-40A9-9372-6FF383ED1745}|CODE_C.vcxproj|solutionrelative:src\\BossMonster.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8C218262-3D22-40A9-9372-6FF383ED1745}|CODE_C.vcxproj|C:\\Users\\kisho\\Desktop\\TAFF\\C\u002B\u002B\\Projet Alterdune\\CODE_C\\src\\BestiaryEntry.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8C218262-3D22-40A9-9372-6FF383ED1745}|CODE_C.vcxproj|solutionrelative:src\\BestiaryEntry.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8C218262-3D22-40A9-9372-6FF383ED1745}|CODE_C.vcxproj|C:\\Users\\kisho\\Desktop\\TAFF\\C\u002B\u002B\\Projet Alterdune\\CODE_C\\src\\ActAction.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8C218262-3D22-40A9-9372-6FF383ED1745}|CODE_C.vcxproj|solutionrelative:src\\ActAction.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8C218262-3D22-40A9-9372-6FF383ED1745}|CODE_C.vcxproj|C:\\Users\\kisho\\Desktop\\TAFF\\C\u002B\u002B\\Projet Alterdune\\CODE_C\\CODE_C.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{8C218262-3D22-40A9-9372-6FF383ED1745}|CODE_C.vcxproj|solutionrelative:CODE_C.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
@@ -14,17 +54,151 @@
       "DocumentGroups": [
         {
           "DockedWidth": 226,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 7,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Player.cpp",
+              "DocumentMoniker": "C:\\Users\\kisho\\Desktop\\TAFF\\C\u002B\u002B\\Projet Alterdune\\CODE_C\\src\\Player.cpp",
+              "RelativeDocumentMoniker": "src\\Player.cpp",
+              "ToolTip": "C:\\Users\\kisho\\Desktop\\TAFF\\C\u002B\u002B\\Projet Alterdune\\CODE_C\\src\\Player.cpp",
+              "RelativeToolTip": "src\\Player.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-04-15T01:07:07.098Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Game.cpp",
+              "DocumentMoniker": "C:\\Users\\kisho\\Desktop\\TAFF\\C\u002B\u002B\\Projet Alterdune\\CODE_C\\src\\Game.cpp",
+              "RelativeDocumentMoniker": "src\\Game.cpp",
+              "ToolTip": "C:\\Users\\kisho\\Desktop\\TAFF\\C\u002B\u002B\\Projet Alterdune\\CODE_C\\src\\Game.cpp",
+              "RelativeToolTip": "src\\Game.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-04-15T01:07:06.751Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "NormalMonster.cpp",
+              "DocumentMoniker": "C:\\Users\\kisho\\Desktop\\TAFF\\C\u002B\u002B\\Projet Alterdune\\CODE_C\\src\\NormalMonster.cpp",
+              "RelativeDocumentMoniker": "src\\NormalMonster.cpp",
+              "ToolTip": "C:\\Users\\kisho\\Desktop\\TAFF\\C\u002B\u002B\\Projet Alterdune\\CODE_C\\src\\NormalMonster.cpp",
+              "RelativeToolTip": "src\\NormalMonster.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-04-15T01:07:07.033Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Monster.cpp",
+              "DocumentMoniker": "C:\\Users\\kisho\\Desktop\\TAFF\\C\u002B\u002B\\Projet Alterdune\\CODE_C\\src\\Monster.cpp",
+              "RelativeDocumentMoniker": "src\\Monster.cpp",
+              "ToolTip": "C:\\Users\\kisho\\Desktop\\TAFF\\C\u002B\u002B\\Projet Alterdune\\CODE_C\\src\\Monster.cpp",
+              "RelativeToolTip": "src\\Monster.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-04-15T01:07:06.964Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MiniBossMonster.cpp",
+              "DocumentMoniker": "C:\\Users\\kisho\\Desktop\\TAFF\\C\u002B\u002B\\Projet Alterdune\\CODE_C\\src\\MiniBossMonster.cpp",
+              "RelativeDocumentMoniker": "src\\MiniBossMonster.cpp",
+              "ToolTip": "C:\\Users\\kisho\\Desktop\\TAFF\\C\u002B\u002B\\Projet Alterdune\\CODE_C\\src\\MiniBossMonster.cpp",
+              "RelativeToolTip": "src\\MiniBossMonster.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-04-15T01:07:06.893Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Item.cpp",
+              "DocumentMoniker": "C:\\Users\\kisho\\Desktop\\TAFF\\C\u002B\u002B\\Projet Alterdune\\CODE_C\\src\\Item.cpp",
+              "RelativeDocumentMoniker": "src\\Item.cpp",
+              "ToolTip": "C:\\Users\\kisho\\Desktop\\TAFF\\C\u002B\u002B\\Projet Alterdune\\CODE_C\\src\\Item.cpp",
+              "RelativeToolTip": "src\\Item.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-04-15T01:07:06.823Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Entity.cpp",
+              "DocumentMoniker": "C:\\Users\\kisho\\Desktop\\TAFF\\C\u002B\u002B\\Projet Alterdune\\CODE_C\\src\\Entity.cpp",
+              "RelativeDocumentMoniker": "src\\Entity.cpp",
+              "ToolTip": "C:\\Users\\kisho\\Desktop\\TAFF\\C\u002B\u002B\\Projet Alterdune\\CODE_C\\src\\Entity.cpp",
+              "RelativeToolTip": "src\\Entity.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-04-15T01:07:06.639Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "BossMonster.cpp",
+              "DocumentMoniker": "C:\\Users\\kisho\\Desktop\\TAFF\\C\u002B\u002B\\Projet Alterdune\\CODE_C\\src\\BossMonster.cpp",
+              "RelativeDocumentMoniker": "src\\BossMonster.cpp",
+              "ToolTip": "C:\\Users\\kisho\\Desktop\\TAFF\\C\u002B\u002B\\Projet Alterdune\\CODE_C\\src\\BossMonster.cpp",
+              "RelativeToolTip": "src\\BossMonster.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-04-15T01:07:06.572Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "BestiaryEntry.cpp",
+              "DocumentMoniker": "C:\\Users\\kisho\\Desktop\\TAFF\\C\u002B\u002B\\Projet Alterdune\\CODE_C\\src\\BestiaryEntry.cpp",
+              "RelativeDocumentMoniker": "src\\BestiaryEntry.cpp",
+              "ToolTip": "C:\\Users\\kisho\\Desktop\\TAFF\\C\u002B\u002B\\Projet Alterdune\\CODE_C\\src\\BestiaryEntry.cpp",
+              "RelativeToolTip": "src\\BestiaryEntry.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-04-15T01:07:06.458Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ActAction.cpp",
+              "DocumentMoniker": "C:\\Users\\kisho\\Desktop\\TAFF\\C\u002B\u002B\\Projet Alterdune\\CODE_C\\src\\ActAction.cpp",
+              "RelativeDocumentMoniker": "src\\ActAction.cpp",
+              "ToolTip": "C:\\Users\\kisho\\Desktop\\TAFF\\C\u002B\u002B\\Projet Alterdune\\CODE_C\\src\\ActAction.cpp",
+              "RelativeToolTip": "src\\ActAction.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-04-15T01:07:06.33Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "CODE_C.cpp",
-              "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\GIT\\projet_ALTERDUN\\CODE_C\\CODE_C.cpp",
+              "DocumentMoniker": "C:\\Users\\kisho\\Desktop\\TAFF\\C\u002B\u002B\\Projet Alterdune\\CODE_C\\CODE_C.cpp",
               "RelativeDocumentMoniker": "CODE_C.cpp",
-              "ToolTip": "C:\\Users\\LENOVO\\Desktop\\GIT\\projet_ALTERDUN\\CODE_C\\CODE_C.cpp",
+              "ToolTip": "C:\\Users\\kisho\\Desktop\\TAFF\\C\u002B\u002B\\Projet Alterdune\\CODE_C\\CODE_C.cpp",
               "RelativeToolTip": "CODE_C.cpp",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAABEAAABCAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2026-04-10T15:48:30.426Z",
               "EditorCaption": ""
