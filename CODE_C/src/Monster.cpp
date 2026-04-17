@@ -28,6 +28,10 @@ int Monster::getMercy() const {
 	return mercy;
 }
 
+int Monster::getMercyObj() const {
+	return mercy_obj;
+}
+
 void Monster::addMercy(int amount) {
 	mercy += amount;
 	if (mercy < 0) mercy = 0;

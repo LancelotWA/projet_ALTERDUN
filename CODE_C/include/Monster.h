@@ -26,6 +26,7 @@ public:
 	int getAtk() const;
 	int getDef() const;
 	int getMercy() const;
+	int getMercyObj() const;
 	void addMercy(int amount);
 	vector<string>& getActIds();
 };
