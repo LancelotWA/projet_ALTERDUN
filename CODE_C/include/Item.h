@@ -18,6 +18,8 @@ public:
 
 	void apply(Player& p, Monster& m);
 	string getName() const;
+	ItemType getType() const;
+	int getValue() const;
 	int getQuantity() const;
 	void decrement();
 };

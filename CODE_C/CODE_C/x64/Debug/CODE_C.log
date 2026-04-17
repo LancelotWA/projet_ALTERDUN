@@ -1,13 +1,2 @@
-﻿  CODE_C.cpp
-  ActAction.cpp
-  BestiaryEntry.cpp
-  BossMonster.cpp
-  Entity.cpp
-  Game.cpp
-  Item.cpp
-  MiniBossMonster.cpp
-  Monster.cpp
-  NormalMonster.cpp
-  Player.cpp
-  Génération de code en cours...
-  CODE_C.vcxproj -> C:\Users\kisho\Desktop\TAFF\C++\Projet Alterdune\CODE_C\x64\Debug\CODE_C.exe
+﻿  Game.cpp
+  CODE_C.vcxproj -> C:\Users\kisho\source\repos\projet_ALTERDUN\CODE_C\x64\Debug\CODE_C.exe

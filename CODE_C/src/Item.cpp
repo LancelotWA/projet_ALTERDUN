@@ -23,6 +23,14 @@ string Item::getName() const {
 	return name;
 }
 
+ItemType Item::getType() const {
+	return type;
+}
+
+int Item::getValue() const {
+	return value;
+}
+
 int Item::getQuantity() const {
 	return quantity;
 }

@@ -2,21 +2,22 @@
 #include "../include/NormalMonster.h"
 #include "../include/MiniBossMonster.h"
 #include "../include/BossMonster.h"
+using namespace std;
 
-Game::Game() : player(20, 20, "Player") {}
+Game::Game() : player(100, 100, "Player") {}
 
 Game::~Game() {
 }
 
 void Game::run() {
-	loadItems("items.csv");
 	loadMonsters("monsters.csv");
 
 	cout << "=== ALTERDUNE ===\n";
 	cout << "Entrez votre nom : ";
 	string nom;
 	cin >> nom;
-	player = Player(20, 20, nom);
+	player = Player(100, 100, nom);
+	loadItems("items.csv");
 
 	int choice = 0;
 	do {
@@ -30,9 +31,9 @@ void Game::run() {
 			else
 				startCombat();
 			break;
-		case 2: showStats();    break;
-		case 3: showItems();    break;
-		case 4: showBestiary(); break;
+		case 2: showStats();    cout << "\nAppuyez sur Entree pour continuer..."; cin.ignore(); cin.get(); break;
+		case 3: showItems();    cout << "\nAppuyez sur Entree pour continuer..."; cin.ignore(); cin.get(); break;
+		case 4: showBestiary(); cout << "\nAppuyez sur Entree pour continuer..."; cin.ignore(); cin.get(); break;
 		case 5: cout << "Au revoir !\n"; break;
 		default: cout << "Choix invalide.\n"; break;
 		}
@@ -42,13 +43,19 @@ void Game::run() {
 			break;
 		}
 
+		if ((int)bestiary.size() >= 10) {
+			cout << "\n=== VICTOIRE ! Vous avez vaincu 10 monstres ! ===\n";
+			break;
+		}
+
 	} while (choice != 5);
 }
 
 void Game::showMenu() {
+	system("cls");
 	cout << "\n=== MENU ===\n";
 	cout << player.getName() << " | HP : " << player.getHp() << "/" << player.getHpMax() << "\n";
-	cout << "Monstres restants : " << monsters.size() << "\n";
+	cout << "Victoires : " << bestiary.size() << "/10\n";
 	cout << "\n";
 	cout << "1. Combattre\n";
 	cout << "2. Stats\n";
@@ -180,14 +187,13 @@ void Game::startCombat() {
 		return ActAction(id, "Tu agis mysterieusement.", 20);
 	};
 
-	cout << "\n=== COMBAT : " << m->getName() << " (" << m->getCategory() << ") ===\n";
-
 	bool combatOver = false;
 	FightResult result = FightResult::KILLED;
 
 	while (!combatOver) {
 		// Affichage de l'état
-		cout << "\n";
+		system("cls");
+		cout << "\n=== COMBAT : " << m->getName() << " (" << m->getCategory() << ") ===\n";
 		cout << m->getName() << " HP : " << m->getHp() << "/" << m->getHpMax()
 			 << " | Mercy : " << m->getMercy() << "/" << m->getMercyObj() << "\n";
 		cout << player.getName() << " HP : " << player.getHp() << "/" << player.getHpMax() << "\n";
@@ -268,14 +274,16 @@ void Game::startCombat() {
 				 << "(HP : " << player.getHp() << "/" << player.getHpMax() << ")\n";
 			if (!player.isAlive()) {
 				cout << "Vous etes mort. Game over.\n";
+				cout << "\nAppuyez sur Entree pour continuer..."; cin.ignore(); cin.get();
 				return;
 			}
 		}
+
+		cout << "\nAppuyez sur Entree pour continuer..."; cin.ignore(); cin.get();
 	}
 
-	// Ajout au bestiaire et suppression du monstre de la liste
+	// Ajout au bestiaire
 	bestiary.push_back(BestiaryEntry((int)bestiary.size() + 1, result, m));
-	monsters.erase(monsters.begin() + idx);
 }
 
 void Game::showBestiary() {
@@ -302,7 +310,15 @@ void Game::showItems() {
 	}
 	cout << "=== INVENTAIRE ===\n";
 	for (int i = 0; i < (int)inv.size(); i++) {
+		string typeLabel;
+		int val = inv[i].getValue();
+		switch (inv[i].getType()) {
+			case ItemType::HEAL:   typeLabel = "Soin +" + to_string(val) + " HP";     break;
+			case ItemType::ATTACK: typeLabel = "Degat " + to_string(-val) + " HP";    break;
+			case ItemType::MERCY:  typeLabel = "Grace";                                break;
+			default:               typeLabel = "?";                                    break;
+		}
 		cout << "[" << i + 1 << "] " << inv[i].getName()
-			 << " (x" << inv[i].getQuantity() << ")\n";
+			 << " (" << typeLabel << ") x" << inv[i].getQuantity() << "\n";
 	}
 }
