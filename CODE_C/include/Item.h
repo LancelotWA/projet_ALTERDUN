@@ -22,4 +22,5 @@ public:
 	int getValue() const;
 	int getQuantity() const;
 	void decrement();
+	bool isOnPlayer() const;
 };

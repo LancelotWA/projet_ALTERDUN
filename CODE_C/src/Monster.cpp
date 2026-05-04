@@ -4,8 +4,12 @@
 Monster::Monster(int hp, int hpMax, const string& name, int atk, int def, int mercy_obj)
 	: Entity(hp, hpMax), name(name), atk(atk), def(def), mercy(0), mercy_obj(mercy_obj) {}
 
-void Monster::attack(Player& p) {
-	p.takeDamage(atk);
+int Monster::attack(Player& p) {
+	static mt19937 rng(random_device{}());
+	uniform_int_distribution<int> dist(0, p.getHpMax());
+	int dmg = dist(rng);
+	p.takeDamage(dmg);
+	return dmg;
 }
 
 bool Monster::canBeSpared() const {
@@ -36,6 +40,10 @@ void Monster::addMercy(int amount) {
 	mercy += amount;
 	if (mercy < 0) mercy = 0;
 	if (mercy > mercy_obj) mercy = mercy_obj;
+}
+
+void Monster::resetMercy() {
+	mercy = 0;
 }
 
 vector<string>& Monster::getActIds() {

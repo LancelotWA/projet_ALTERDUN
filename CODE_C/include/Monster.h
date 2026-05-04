@@ -20,7 +20,7 @@ public:
 
 	virtual int nbActs() const = 0;
 	virtual string getCategory() const = 0;
-	void attack(Player& p);
+	int attack(Player& p);
 	bool canBeSpared() const;
 	string getName() const;
 	int getAtk() const;
@@ -28,5 +28,6 @@ public:
 	int getMercy() const;
 	int getMercyObj() const;
 	void addMercy(int amount);
+	void resetMercy();
 	vector<string>& getActIds();
 };

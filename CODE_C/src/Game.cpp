@@ -4,25 +4,67 @@
 #include "../include/BossMonster.h"
 using namespace std;
 
-Game::Game() : player(100, 100, "Player") {}
+static int readInt() {
+	int val;
+	while (!(cin >> val)) {
+		cin.clear();
+		cin.ignore(1000, '\n');
+		cout << "Entree invalide, entrez un nombre : ";
+	}
+	return val;
+}
+
+Game::Game() : player(100, 100, "Player") {
+	actCatalogue = {
+		{ "COMPLIMENT",  ActAction("COMPLIMENT",  "Tu complimentes le monstre chaleureusement.",         34) },
+		{ "DISCUSS",     ActAction("DISCUSS",     "Tu engages une conversation avec le monstre.",        34) },
+		{ "JOKE",        ActAction("JOKE",        "Tu racontes une blague. Le monstre rit un peu.",      34) },
+		{ "PET",         ActAction("PET",         "Tu carresses doucement le monstre.",                  34) },
+		{ "DANCE",       ActAction("DANCE",       "Tu danses avec le monstre.",                          34) },
+		{ "OBSERVE",     ActAction("OBSERVE",     "Tu observes attentivement le monstre.",               25) },
+		{ "OFFER_SNACK", ActAction("OFFER_SNACK", "Tu offres un snack au monstre.",                      40) },
+		{ "REASON",      ActAction("REASON",      "Tu tentes de raisonner le monstre.",                  30) },
+		{ "INSULT",      ActAction("INSULT",      "Tu insules le monstre. Il est perturbe.",            -20) },
+		{ "TAUNT",       ActAction("TAUNT",       "Tu nargues le monstre. Il devient furieux.",         -30) },
+	};
+}
 
 Game::~Game() {
+	for (Monster* m : monsters)
+		delete m;
 }
 
 void Game::run() {
-	loadMonsters("monsters.csv");
+	int warnings = 0;
+	if (!loadMonsters("monsters.csv", warnings)) {
+		cout << "\nAppuyez sur Entree pour quitter..."; cin.get();
+		return;
+	}
 
 	cout << "=== ALTERDUNE ===\n";
 	cout << "Entrez votre nom : ";
 	string nom;
 	cin >> nom;
 	player = Player(100, 100, nom);
-	loadItems("items.csv");
+
+	if (!loadItems("items.csv", warnings)) {
+		cout << "\nAppuyez sur Entree pour quitter..."; cin.get();
+		return;
+	}
+
+	cout << "\n--- Bienvenue, " << player.getName() << " ! ---\n";
+	cout << "HP : " << player.getHp() << "/" << player.getHpMax() << "\n";
+	cout << "Inventaire de depart :\n";
+	for (const Item& item : player.getInventory())
+		cout << "  - " << item.getName() << " x" << item.getQuantity() << "\n";
+	if (warnings > 0)
+		cout << "\n[!] " << warnings << " ligne(s) ignoree(s) lors du chargement des fichiers (format invalide).\n";
+	cout << "\nAppuyez sur Entree pour continuer..."; cin.ignore(); cin.get();
 
 	int choice = 0;
 	do {
 		showMenu();
-		cin >> choice;
+		choice = readInt();
 
 		switch (choice) {
 		case 1:
@@ -32,7 +74,30 @@ void Game::run() {
 				startCombat();
 			break;
 		case 2: showStats();    cout << "\nAppuyez sur Entree pour continuer..."; cin.ignore(); cin.get(); break;
-		case 3: showItems();    cout << "\nAppuyez sur Entree pour continuer..."; cin.ignore(); cin.get(); break;
+		case 3:
+		{
+			showItems();
+			vector<Item>& inv = player.getInventory();
+			cout << "Utiliser un item ? (numero, 0 pour annuler) : ";
+			int itemChoice = readInt();
+			if (itemChoice >= 1 && itemChoice <= (int)inv.size()) {
+				if (!inv[itemChoice - 1].isOnPlayer()) {
+					cout << "Cet item ne peut etre utilise qu'en combat.\n";
+				} else if (inv[itemChoice - 1].getQuantity() <= 0) {
+					cout << "Plus de stock.\n";
+				} else {
+					string itemName = inv[itemChoice - 1].getName();
+					int hpBefore = player.getHp();
+					int val = inv[itemChoice - 1].getValue();
+					if (val >= 0) player.heal(val);
+					else player.takeDamage(-val);
+					inv[itemChoice - 1].decrement();
+					cout << itemName << " utilise ! HP : " << hpBefore << " -> " << player.getHp() << "\n";
+				}
+			}
+			cout << "\nAppuyez sur Entree pour continuer..."; cin.ignore(); cin.get();
+			break;
+		}
 		case 4: showBestiary(); cout << "\nAppuyez sur Entree pour continuer..."; cin.ignore(); cin.get(); break;
 		case 5: cout << "Au revoir !\n"; break;
 		default: cout << "Choix invalide.\n"; break;
@@ -40,11 +105,12 @@ void Game::run() {
 
 		if (!player.isAlive()) {
 			cout << "\n=== GAME OVER ===\n";
+			cout << "T'etais pas l'elu, retourne a ta chaumiere.\n";
 			break;
 		}
 
-		if ((int)bestiary.size() >= 10) {
-			cout << "\n=== VICTOIRE ! Vous avez vaincu 10 monstres ! ===\n";
+		if ((int)bestiary.size() >= WIN_CONDITION) {
+			showEnding();
 			break;
 		}
 
@@ -55,7 +121,7 @@ void Game::showMenu() {
 	system("cls");
 	cout << "\n=== MENU ===\n";
 	cout << player.getName() << " | HP : " << player.getHp() << "/" << player.getHpMax() << "\n";
-	cout << "Victoires : " << bestiary.size() << "/10\n";
+	cout << "Victoires : " << bestiary.size() << "/" << WIN_CONDITION << "\n";
 	cout << "\n";
 	cout << "1. Combattre\n";
 	cout << "2. Stats\n";
@@ -65,11 +131,13 @@ void Game::showMenu() {
 	cout << "Choix : ";
 }
 
-void Game::loadItems(const string& path) {
+bool Game::loadItems(const string& path, int& warnings) {
 	ifstream file(path);
 	if (!file.is_open()) {
-		cout << "Erreur : impossible d'ouvrir " << path << endl;
-		return;
+		cout << "\n=== ERREUR : fichier introuvable ===\n";
+		cout << "Impossible d'ouvrir \"" << path << "\".\n";
+		cout << "Verifiez que le fichier est present a cote de l'executable.\n";
+		return false;
 	}
 
 	string line;
@@ -85,34 +153,41 @@ void Game::loadItems(const string& path) {
 		getline(ss, valStr, ',');
 		getline(ss, qtyStr, ',');
 
-		ItemType type;
-		bool on_player;
-		int value = stoi(valStr);
-		int qty = stoi(qtyStr);
+		try {
+			ItemType type;
+			bool on_player;
+			int value = stoi(valStr);
+			int qty = stoi(qtyStr);
 
-		if (typeStr == "HEAL") {
-			type = ItemType::HEAL;
-			on_player = true;
-		} else if (typeStr == "DAMAGE") {
-			type = ItemType::ATTACK;
-			on_player = false;
-			value = -value; // valeur négative pour endommager le monstre via takeDamage(-value)
-		} else if (typeStr == "MERCY") {
-			type = ItemType::MERCY;
-			on_player = false;
-		} else {
-			continue;
+			if (typeStr == "HEAL") {
+				type = ItemType::HEAL;
+				on_player = true;
+			} else if (typeStr == "DAMAGE") {
+				type = ItemType::ATTACK;
+				on_player = false;
+				value = -value;
+			} else if (typeStr == "MERCY") {
+				type = ItemType::MERCY;
+				on_player = false;
+			} else {
+				continue;
+			}
+
+			player.getInventory().push_back(Item(nom, type, value, qty, on_player));
+		} catch (...) {
+			warnings++;
 		}
-
-		player.getInventory().push_back(Item(nom, type, value, qty, on_player));
 	}
+	return true;
 }
 
-void Game::loadMonsters(const string& path) {
+bool Game::loadMonsters(const string& path, int& warnings) {
 	ifstream file(path);
 	if (!file.is_open()) {
-		cout << "Erreur : impossible d'ouvrir " << path << endl;
-		return;
+		cout << "\n=== ERREUR : fichier introuvable ===\n";
+		cout << "Impossible d'ouvrir \"" << path << "\".\n";
+		cout << "Verifiez que le fichier est present a cote de l'executable.\n";
+		return false;
 	}
 
 	string line;
@@ -135,27 +210,39 @@ void Game::loadMonsters(const string& path) {
 		getline(ss, act3, ',');
 		getline(ss, act4, ',');
 
-		int hp = stoi(hpStr);
-		int atk = stoi(atkStr);
-		int def = stoi(defStr);
-		int mercyGoal = stoi(mercyGoalStr);
+		try {
+			int hp = stoi(hpStr);
+			int atk = stoi(atkStr);
+			int def = stoi(defStr);
+			int mercyGoal = stoi(mercyGoalStr);
 
-		Monster* m = nullptr;
-		if (categorie == "NORMAL")
-			m = new NormalMonster(hp, hp, nom, atk, def, mercyGoal);
-		else if (categorie == "MINIBOSS")
-			m = new MiniBossMonster(hp, hp, nom, atk, def, mercyGoal);
-		else if (categorie == "BOSS")
-			m = new BossMonster(hp, hp, nom, atk, def, mercyGoal);
+			Monster* m = nullptr;
+			if (categorie == "NORMAL")
+				m = new NormalMonster(hp, hp, nom, atk, def, mercyGoal);
+			else if (categorie == "MINIBOSS")
+				m = new MiniBossMonster(hp, hp, nom, atk, def, mercyGoal);
+			else if (categorie == "BOSS")
+				m = new BossMonster(hp, hp, nom, atk, def, mercyGoal);
 
-		if (m) {
-			for (const string& act : {act1, act2, act3, act4}) {
-				if (act != "-")
-					m->getActIds().push_back(act);
+			if (m) {
+				for (const string& act : {act1, act2, act3, act4}) {
+					if (act != "-")
+						m->getActIds().push_back(act);
+				}
+				monsters.push_back(m);
+			} else {
+				warnings++;
 			}
-			monsters.push_back(m);
+		} catch (...) {
+			warnings++;
 		}
 	}
+	if (monsters.empty()) {
+		cout << "\n=== ERREUR : aucun monstre valide charge ===\n";
+		cout << "Verifiez le contenu de \"" << path << "\".\n";
+		return false;
+	}
+	return true;
 }
 
 void Game::startCombat() {
@@ -170,21 +257,14 @@ void Game::startCombat() {
 	int idx = dist(rng);
 	Monster* m = monsters[idx];
 
-	// Reinitialise les PV du monstre pour le combat
+	// Reinitialise les PV et la Mercy du monstre pour le combat
 	m->heal(m->getHpMax());
+	m->resetMercy();
 
-	// Table des actions ACT : id -> {texte affiché, impact mercy}
-	auto getActAction = [](const string& id) -> ActAction {
-		if (id == "COMPLIMENT")  return ActAction(id, "Tu complimentes le monstre chaleureusement.", 34);
-		if (id == "DISCUSS")     return ActAction(id, "Tu engages une conversation avec le monstre.", 34);
-		if (id == "JOKE")        return ActAction(id, "Tu racontes une blague. Le monstre rit un peu.", 34);
-		if (id == "PET")         return ActAction(id, "Tu carresses doucement le monstre.", 34);
-		if (id == "DANCE")       return ActAction(id, "Tu danses avec le monstre.", 34);
-		if (id == "OBSERVE")     return ActAction(id, "Tu observes attentivement le monstre.", 25);
-		if (id == "OFFER_SNACK") return ActAction(id, "Tu offres un snack au monstre.", 40);
-		if (id == "REASON")      return ActAction(id, "Tu tentes de raisonner le monstre.", 30);
-		if (id == "INSULT")      return ActAction(id, "Tu insules le monstre... ca marche quand meme.", 20);
-		return ActAction(id, "Tu agis mysterieusement.", 20);
+	auto getActAction = [&](const string& id) -> ActAction {
+		auto it = actCatalogue.find(id);
+		if (it != actCatalogue.end()) return it->second;
+		return ActAction(id, "Tu agis mysterieusement.", 0);
 	};
 
 	bool combatOver = false;
@@ -200,34 +280,45 @@ void Game::startCombat() {
 		cout << "\n> 1. FIGHT   2. ACT   3. ITEM   4. MERCY\n";
 		cout << "Choix : ";
 
-		int choice;
-		cin >> choice;
+		int choice = readInt();
 
+		bool playerActed = false;
 		switch (choice) {
 		case 1: // FIGHT
-			player.fight(*m);
-			cout << "Vous attaquez " << m->getName() << " ! (HP restants : " << m->getHp() << ")\n";
+		{
+			playerActed = true;
+			int dmg = player.fight(*m);
+			if (dmg == 0)
+				cout << "Vous attaquez " << m->getName() << " mais vous ratez !\n";
+			else
+				cout << "Vous attaquez " << m->getName() << " et infligez " << dmg << " degats ! (HP restants : " << m->getHp() << ")\n";
 			if (!m->isAlive()) {
 				cout << m->getName() << " est vaincu !\n";
 				result = FightResult::KILLED;
 				combatOver = true;
 			}
 			break;
+		}
 
 		case 2: // ACT
 		{
 			vector<string>& acts = m->getActIds();
-			cout << "Choisissez une action :\n";
-			for (int i = 0; i < (int)acts.size(); i++)
+			int maxActs = min(m->nbActs(), (int)acts.size());
+			cout << "Choisissez une action (0 pour annuler) :\n";
+			for (int i = 0; i < maxActs; i++)
 				cout << "  " << i + 1 << ". " << acts[i] << "\n";
 			cout << "Choix : ";
-			int actChoice;
-			cin >> actChoice;
-			if (actChoice >= 1 && actChoice <= (int)acts.size()) {
+			int actChoice = readInt();
+			if (actChoice == 0) {
+				cout << "Action annulee.\n";
+			} else if (actChoice >= 1 && actChoice <= maxActs) {
+				playerActed = true;
 				ActAction act = getActAction(acts[actChoice - 1]);
 				cout << act.getText() << "\n";
 				act.execute(*m);
 				cout << "(Mercy : " << m->getMercy() << "/" << m->getMercyObj() << ")\n";
+			} else {
+				cout << "Choix invalide.\n";
 			}
 			break;
 		}
@@ -241,17 +332,23 @@ void Game::startCombat() {
 			}
 			showItems();
 			cout << "Choisissez un item (0 pour annuler) : ";
-			int itemChoice;
-			cin >> itemChoice;
+			int itemChoice = readInt();
 			if (itemChoice >= 1 && itemChoice <= (int)inv.size()) {
+				playerActed = true;
 				string itemName = inv[itemChoice - 1].getName();
 				player.useItem(itemChoice - 1, *m);
 				cout << itemName << " utilise !\n";
+				if (!m->isAlive()) {
+					cout << m->getName() << " est vaincu !\n";
+					result = FightResult::KILLED;
+					combatOver = true;
+				}
 			}
 			break;
 		}
 
 		case 4: // MERCY
+			playerActed = true;
 			if (player.mercy(*m)) {
 				cout << m->getName() << " est epargne !\n";
 				result = FightResult::SPARED;
@@ -268,10 +365,13 @@ void Game::startCombat() {
 		}
 
 		// Attaque du monstre si le combat continue
-		if (!combatOver && m->isAlive()) {
-			m->attack(player);
-			cout << m->getName() << " vous attaque ! Vous perdez " << m->getAtk() << " PV. "
-				 << "(HP : " << player.getHp() << "/" << player.getHpMax() << ")\n";
+		if (playerActed && !combatOver && m->isAlive()) {
+			int dmg = m->attack(player);
+			if (dmg == 0)
+				cout << m->getName() << " vous attaque mais rate !\n";
+			else
+				cout << m->getName() << " vous attaque et inflige " << dmg << " degats ! "
+					 << "(HP : " << player.getHp() << "/" << player.getHpMax() << ")\n";
 			if (!player.isAlive()) {
 				cout << "Vous etes mort. Game over.\n";
 				cout << "\nAppuyez sur Entree pour continuer..."; cin.ignore(); cin.get();
@@ -297,9 +397,41 @@ void Game::showBestiary() {
 }
 
 void Game::showStats() {
+	int killed = 0, spared = 0;
+	for (const BestiaryEntry& e : bestiary) {
+		if (e.getResult() == "Tue") killed++;
+		else spared++;
+	}
+
 	cout << "=== STATS ===\n";
-	cout << "Nom    : " << player.getName() << "\n";
-	cout << "HP     : " << player.getHp() << " / " << player.getHpMax() << "\n";
+	cout << "Nom       : " << player.getName() << "\n";
+	cout << "HP        : " << player.getHp() << " / " << player.getHpMax() << "\n";
+	cout << "Tues      : " << killed << "\n";
+	cout << "Epargnes  : " << spared << "\n";
+	cout << "Victoires : " << bestiary.size() << " / " << WIN_CONDITION << "\n";
+}
+
+void Game::showEnding() {
+	int killed = 0, spared = 0;
+	for (const BestiaryEntry& e : bestiary) {
+		if (e.getResult() == "Tue") killed++;
+		else spared++;
+	}
+
+	cout << "\n";
+	if (killed == WIN_CONDITION) {
+		cout << "=== FIN GENOCIDAIRE ===\n";
+		cout << "Vous avez tue tous les monstres sans pitie.\n";
+		cout << "Le monde souterrain est desormais vide et silencieux.\n";
+	} else if (spared == WIN_CONDITION) {
+		cout << "=== FIN PACIFISTE ===\n";
+		cout << "Vous avez epargne chaque monstre rencontre.\n";
+		cout << "Les monstres vous ouvrent les bras. La paix regne.\n";
+	} else {
+		cout << "=== FIN NEUTRE ===\n";
+		cout << "Vous avez vaincu " << WIN_CONDITION << " monstres (" << killed << " tues, " << spared << " epargnes).\n";
+		cout << "Votre chemin reste ambigu. Le monde vous regarde, incertain.\n";
+	}
 }
 
 void Game::showItems() {

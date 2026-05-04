@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <map>
 #include <iostream>
 #include <random>
 #include <fstream>
@@ -8,6 +9,7 @@
 
 using std::string;
 using std::vector;
+using std::map;
 using std::cout;
 using std::cin;
 using std::endl;

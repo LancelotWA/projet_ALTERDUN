@@ -13,7 +13,7 @@ private:
 public:
 	Player(int hp, int hpMax, const string& name);
 
-	void fight(Monster& m);
+	int fight(Monster& m);
 	void useItem(int index, Monster& m);
 	bool mercy(Monster& m);
 	string getName() const;

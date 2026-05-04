@@ -38,3 +38,7 @@ int Item::getQuantity() const {
 void Item::decrement() {
 	if (quantity > 0) quantity--;
 }
+
+bool Item::isOnPlayer() const {
+	return on_player;
+}

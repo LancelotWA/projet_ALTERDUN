@@ -4,11 +4,12 @@
 Player::Player(int hp, int hpMax, const string& name)
 	: Entity(hp, hpMax), name(name) {}
 
-void Player::fight(Monster& m) {
+int Player::fight(Monster& m) {
 	static mt19937 rng(random_device{}());
 	uniform_int_distribution<int> dist(0, m.getHpMax());
 	int dmg = dist(rng);
 	m.takeDamage(dmg);
+	return dmg;
 }
 
 void Player::useItem(int index, Monster& m) {
