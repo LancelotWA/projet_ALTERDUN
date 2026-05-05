@@ -7,3 +7,7 @@ int BossMonster::nbActs() const {
 string BossMonster::getCategory() const {
 	return "BOSS";
 }
+
+Monster* BossMonster::clone() const {
+	return new BossMonster(*this);
+}

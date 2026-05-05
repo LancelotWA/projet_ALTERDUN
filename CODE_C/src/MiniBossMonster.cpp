@@ -7,3 +7,7 @@ int MiniBossMonster::nbActs() const {
 string MiniBossMonster::getCategory() const {
 	return "MINIBOSS";
 }
+
+Monster* MiniBossMonster::clone() const {
+	return new MiniBossMonster(*this);
+}

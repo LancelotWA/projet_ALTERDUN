@@ -5,6 +5,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{8C218262-3D22-40A9-9372-6FF383ED1745}|CODE_C.vcxproj|C:\\Users\\LENOVO\\Desktop\\GIT\\projet_ALTERDUN\\CODE_C\\src\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{8C218262-3D22-40A9-9372-6FF383ED1745}|CODE_C.vcxproj|solutionrelative:src\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8C218262-3D22-40A9-9372-6FF383ED1745}|CODE_C.vcxproj|C:\\Users\\LENOVO\\Desktop\\GIT\\projet_ALTERDUN\\CODE_C\\src\\Player.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8C218262-3D22-40A9-9372-6FF383ED1745}|CODE_C.vcxproj|solutionrelative:src\\Player.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -28,9 +32,22 @@
               "RelativeDocumentMoniker": "src\\Game.cpp",
               "ToolTip": "C:\\Users\\LENOVO\\Desktop\\GIT\\projet_ALTERDUN\\CODE_C\\src\\Game.cpp",
               "RelativeToolTip": "src\\Game.cpp",
-              "ViewState": "AgIAABIAAAAAAAAAAAAAAHIAAAADAAAAAAAAAA==",
+              "ViewState": "AgIAAIYBAAAAAAAAAAAAADUBAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2026-05-04T18:34:51.672Z",
+              "WhenOpened": "2026-05-04T20:04:18.747Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Player.cpp",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\GIT\\projet_ALTERDUN\\CODE_C\\src\\Player.cpp",
+              "RelativeDocumentMoniker": "src\\Player.cpp",
+              "ToolTip": "C:\\Users\\LENOVO\\Desktop\\GIT\\projet_ALTERDUN\\CODE_C\\src\\Player.cpp",
+              "RelativeToolTip": "src\\Player.cpp",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAoAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-05-04T19:59:40.561Z",
               "EditorCaption": ""
             }
           ]

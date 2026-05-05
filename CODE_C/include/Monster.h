@@ -20,6 +20,7 @@ public:
 
 	virtual int nbActs() const = 0;
 	virtual string getCategory() const = 0;
+	virtual Monster* clone() const = 0;
 	int attack(Player& p);
 	bool canBeSpared() const;
 	string getName() const;

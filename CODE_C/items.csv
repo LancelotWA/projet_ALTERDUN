@@ -6,4 +6,4 @@ PetitGateau,HEAL,5,4
 BombePuante,DAMAGE,20,2
 GrenadeDeChaussette,DAMAGE,35,1
 PoudreDePoivre,DAMAGE,10,3
-ParoleDouceur,MERCY,0,2
+ParoleDouceur,MERCY,40,2

@@ -16,14 +16,14 @@ static int readInt() {
 
 Game::Game() : player(100, 100, "Player") {
 	actCatalogue = {
-		{ "COMPLIMENT",  ActAction("COMPLIMENT",  "Tu complimentes le monstre chaleureusement.",         34) },
-		{ "DISCUSS",     ActAction("DISCUSS",     "Tu engages une conversation avec le monstre.",        34) },
-		{ "JOKE",        ActAction("JOKE",        "Tu racontes une blague. Le monstre rit un peu.",      34) },
-		{ "PET",         ActAction("PET",         "Tu carresses doucement le monstre.",                  34) },
-		{ "DANCE",       ActAction("DANCE",       "Tu danses avec le monstre.",                          34) },
-		{ "OBSERVE",     ActAction("OBSERVE",     "Tu observes attentivement le monstre.",               25) },
-		{ "OFFER_SNACK", ActAction("OFFER_SNACK", "Tu offres un snack au monstre.",                      40) },
-		{ "REASON",      ActAction("REASON",      "Tu tentes de raisonner le monstre.",                  30) },
+		{ "COMPLIMENT",  ActAction("COMPLIMENT",  "Tu complimentes le monstre chaleureusement.",         45) },
+		{ "DISCUSS",     ActAction("DISCUSS",     "Tu engages une conversation avec le monstre.",        45) },
+		{ "JOKE",        ActAction("JOKE",        "Tu racontes une blague. Le monstre rit un peu.",      45) },
+		{ "PET",         ActAction("PET",         "Tu carresses doucement le monstre.",                  45) },
+		{ "DANCE",       ActAction("DANCE",       "Tu danses avec le monstre.",                          45) },
+		{ "OBSERVE",     ActAction("OBSERVE",     "Tu observes attentivement le monstre.",               35) },
+		{ "OFFER_SNACK", ActAction("OFFER_SNACK", "Tu offres un snack au monstre.",                      55) },
+		{ "REASON",      ActAction("REASON",      "Tu tentes de raisonner le monstre.",                  40) },
 		{ "INSULT",      ActAction("INSULT",      "Tu insules le monstre. Il est perturbe.",            -20) },
 		{ "TAUNT",       ActAction("TAUNT",       "Tu nargues le monstre. Il devient furieux.",         -30) },
 	};
@@ -68,10 +68,7 @@ void Game::run() {
 
 		switch (choice) {
 		case 1:
-			if (monsters.empty())
-				cout << "Aucun monstre restant a combattre.\n";
-			else
-				startCombat();
+			startCombat();
 			break;
 		case 2: showStats();    cout << "\nAppuyez sur Entree pour continuer..."; cin.ignore(); cin.get(); break;
 		case 3:
@@ -334,22 +331,26 @@ void Game::startCombat() {
 			cout << "Choisissez un item (0 pour annuler) : ";
 			int itemChoice = readInt();
 			if (itemChoice >= 1 && itemChoice <= (int)inv.size()) {
-				playerActed = true;
-				string itemName = inv[itemChoice - 1].getName();
-				player.useItem(itemChoice - 1, *m);
-				cout << itemName << " utilise !\n";
-				if (!m->isAlive()) {
-					cout << m->getName() << " est vaincu !\n";
-					result = FightResult::KILLED;
-					combatOver = true;
+				if (inv[itemChoice - 1].getQuantity() <= 0) {
+					cout << "Plus de stock pour cet item.\n";
+				} else {
+					playerActed = true;
+					string itemName = inv[itemChoice - 1].getName();
+					player.useItem(itemChoice - 1, *m);
+					cout << itemName << " utilise !\n";
+					if (!m->isAlive()) {
+						cout << m->getName() << " est vaincu !\n";
+						result = FightResult::KILLED;
+						combatOver = true;
+					}
 				}
 			}
 			break;
 		}
 
 		case 4: // MERCY
-			playerActed = true;
 			if (player.mercy(*m)) {
+				playerActed = true;
 				cout << m->getName() << " est epargne !\n";
 				result = FightResult::SPARED;
 				combatOver = true;

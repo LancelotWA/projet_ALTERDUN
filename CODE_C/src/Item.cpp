@@ -6,7 +6,9 @@ Item::Item(const string& name, ItemType type, int value, int quantity, bool on_p
 	: name(name), type(type), value(value), quantity(quantity), on_player(on_player) {}
 
 void Item::apply(Player& p, Monster& m) {
-	if (on_player) {
+	if (type == ItemType::MERCY) {
+		m.addMercy(value);
+	} else if (on_player) {
 		if (value >= 0)
 			p.heal(value);
 		else

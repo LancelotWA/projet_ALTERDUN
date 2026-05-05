@@ -7,4 +7,5 @@ public:
 
 	int nbActs() const override;
 	string getCategory() const override;
+	Monster* clone() const override;
 };
